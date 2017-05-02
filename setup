@@ -1,0 +1,40 @@
+// router test setup
+
+// add ports with virtual IPs
+// and subnet masks
+port add 5000 192.168.140.128/24 1500
+port add 5001 192.168.2.2/24 1500
+port add 5002 192.168.3.3/24 1500
+port add 5003 192.168.4.4/24 1500
+port add 5004 192.168.5.5/24 1500
+
+// add port connections to REAL IPs
+// and ports on other PCs
+connect add 5000 127.0.0.1:5000
+connect add 5001 127.0.0.1:5001
+connect add 5002 127.0.0.1:5002
+connect add 5003 127.0.0.1:5003
+connect add 5004 127.100.100.100:5004
+
+// wait a little to fix display
+sleep 100
+
+// add some routes to routing table
+// these are virtual routes, not physical
+// ones. 
+route add default 192.168.6.0
+
+route add 192.168.128.0/24 192.168.5.0
+route add 192.168.2.0/24 192.168.1.0
+route add 192.168.1.0/24 192.168.2.0
+route add 192.168.140.0/24 192.168.3.1
+
+// wait a little to fix display
+sleep 100
+
+// show configuration
+config
+
+// try routing something
+troute 192.168.140.129
+
