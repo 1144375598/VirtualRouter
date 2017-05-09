@@ -1,5 +1,8 @@
+package com.minxing.graduate.model;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
+
+import com.minxing.graduate.util.VRMUtil;
 
 // Ethernet frame class
 //
@@ -19,21 +22,20 @@ public class EthernetFrame {
 
 	/*----------------------------------------------------------------------------------------*/
 	// constructor. Create a frame from args and make new CRC
-	public EthernetFrame(MacAddress src, MacAddress dst, short typeLength, byte[] dataIn) {
+	public EthernetFrame(MacAddress src, MacAddress dst, short typeLength, byte[] dataIn,StringBuilder builder) {
 		
 		// System.out.println("... Creating new Ethernet Frame");
 		this.srcAddr = src.clone();
 		this.dstAddr = dst.clone();
 		this.setTypeLength(typeLength);
-		setData(dataIn); 
+		setData(dataIn,builder); 
 		
 	}
 	/*----------------------------------------------------------------------------------------*/
 	// constructor. Create a frame from byte array (assumes CRC is valid)
-	public EthernetFrame(byte[] frameIn) {
+	public EthernetFrame(byte[] frameIn,StringBuilder builder) {
 		
 		// System.out.println("... Creating new Ethernet Frame from byte array");
-		
 		this.srcAddr = new MacAddress();
 		this.dstAddr = new MacAddress();
 				
@@ -45,7 +47,7 @@ public class EthernetFrame {
 		this.srcAddr.setMac(Arrays.copyOfRange(frameIn, 0, 6));					// extract dstMAC
 		this.dstAddr.setMac(Arrays.copyOfRange(frameIn, 6, 12));				// extract scrMAC
 		typeLength.put(Arrays.copyOfRange(frameIn, 12, 14));					// extract t/l
-		setData(Arrays.copyOfRange(frameIn, 14, frameIn.length - 4));			// extract data
+		setData(Arrays.copyOfRange(frameIn, 14, frameIn.length - 4),builder);			// extract data
 		CRC.put(Arrays.copyOfRange(frameIn, frameIn.length-4, frameIn.length));	// extract CRC	
 			
 	}
@@ -83,13 +85,14 @@ public class EthernetFrame {
 	}
 	/*----------------------------------------------------------------------------------------*/
 	// set data buffer, pad data if necessary
-	public void setData(byte[] data) {
+	public void setData(byte[] data,StringBuilder builder) {
 		
+		String cr = System.getProperty("os.name").matches("(W|w)indows.*") ? "\r\n" : "\n";
 		byte[] pad = new byte[DATA_PAD_LEN];					// all 0 pad
 		
 		if(data.length > DATA_MAX_LEN) {
-			System.out.println("frame data buffer exeeds max length: " + DATA_MAX_LEN);
-			
+			builder.append(("frame data buffer exeeds max length: " + DATA_MAX_LEN));
+			builder.append(cr);
 		}
 		
 		else if(data.length < DATA_PAD_LEN) {

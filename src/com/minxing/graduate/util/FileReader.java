@@ -1,3 +1,4 @@
+package com.minxing.graduate.util;
 /**
  *
  * LoadFile is used to read and return the lines within a text file

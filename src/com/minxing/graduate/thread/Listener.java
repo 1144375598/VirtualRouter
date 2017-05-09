@@ -1,8 +1,11 @@
+package com.minxing.graduate.thread;
 // listener thread for DatagramSocket
 
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+
+import com.minxing.graduate.model.Router;
 
 
 public class Listener extends Thread {
@@ -36,7 +39,7 @@ public class Listener extends Thread {
 				System.out.println(String.format("thread %d port %d received: %d bytes from %s:%d \n%s\n", 
 						this.getId(),datagramSocket.getLocalPort(),
 						packet.getLength(), packet.getAddress().toString(), packet.getPort(), dataStr ));
-				Router.portAdmin.route(dataStr.getBytes());
+				Router.getPortAdmin().route(dataStr.getBytes());
 				
 			} catch (IOException e) {
 				

@@ -1,3 +1,4 @@
+package com.minxing.graduate.util;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.Random;
