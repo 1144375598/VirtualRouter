@@ -44,7 +44,8 @@ public class Port {
 		inetAddress = InetAddress.getLocalHost(); // local host IP
 		macBytes.put(inetAddress.getAddress(), 0, 4); // M5:M4:M3:M2 = IP
 		macBytes.putShort((short) localPort); // M1:M0 = localPort
-		macAddress = new MacAddress(macBytes.array(),builder); // set MAC address
+		macAddress = new MacAddress(macBytes.array(), builder); // set MAC
+																// address
 		builder.append(("created port " + localPort + " " + macAddress.toDecString()));
 		builder.append(cr);
 
@@ -140,7 +141,7 @@ public class Port {
 
 	/*----------------------------------------------------------------------------------------*/
 	public String getSettings() {
-
+		String cr = System.getProperty("os.name").matches("(W|w)indows.*") ? "\r\n" : "\n";
 		String s = null;
 
 		// MAC, local port, virtual IP, MTU, remote IP, remote port, connect
@@ -158,8 +159,8 @@ public class Port {
 		} else {
 			s += String.format("%-22s", "n/a             n/a");
 		}
-		s += String.format("%-4s\n", isConnected);
-
+		s += String.format("%-4s", isConnected);
+		s += cr;
 		return s;
 	}
 
