@@ -10,14 +10,6 @@ import com.minxing.graduate.util.Constants;
 
 
 
-
-
-/**
- * ConfigurationManager
- * 
- * @author a.khettar
- * 
- */
 public enum ConfigurationManager {
 
     INSTANCE;

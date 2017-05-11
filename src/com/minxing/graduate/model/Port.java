@@ -46,7 +46,7 @@ public class Port {
 		macBytes.putShort((short) localPort); // M1:M0 = localPort
 		macAddress = new MacAddress(macBytes.array(), builder); // set MAC
 																// address
-		builder.append(("created port " + localPort + " " + macAddress.toDecString()));
+		builder.append(("Successful created port " + localPort + " " + macAddress.toDecString()));
 		builder.append(cr);
 
 	}
@@ -60,12 +60,13 @@ public class Port {
 		if (isConnected == true) {
 			builder.append((localPort + ": disconnect before connecting"));
 			builder.append(cr);
+		
 		} else {
 			String[] t = ipRemotePort.split(":"); // no input checking
 			remoteIP = new IPv4(t[0], builder); // store remote IP
 			remotePort = Integer.parseInt(t[1]); // store remote port num
 
-			builder.append((localPort + " connected to " + remoteIP.toString() + ":" + remotePort));
+			builder.append(("Successful "+localPort + " connected to " + remoteIP.toString() + ":" + remotePort));
 			builder.append(cr);
 			isConnected = true;
 
@@ -100,7 +101,7 @@ public class Port {
 			e.printStackTrace();
 		}
 
-		builder.append(("port " + localPort + " stopped listening"));
+		builder.append(("Successful "+"port " + localPort + " stopped listening"));
 		builder.append(cr);
 		isConnected = false;
 		return builder.toString();
@@ -123,7 +124,7 @@ public class Port {
 
 		InetAddress address = InetAddress.getByAddress(remoteIP.getIP());
 		DatagramPacket packet = new DatagramPacket(data, data.length, address, remotePort);
-		builder.append(("port " + localPort + " send: " + data.length + " bytes to " + remoteIP.toString() + ":"
+		builder.append(("Successful "+"port " + localPort + " send: " + data.length + " bytes to " + remoteIP.toString() + ":"
 				+ remotePort));
 		builder.append(cr);
 		String dataStr = new String(packet.getData());

@@ -72,8 +72,7 @@ public class RoutingTable {
 			builder.append(("RoutingTable: errror no default route set"));
 			builder.append(cr);
 		}
-
-		builder.append(("RoutingTable: route the packet for " + ip.toString() + " to gateay: " + gateway.toString()));
+		builder.append(("Successful RoutingTable: route the packet for " + ip.toString() + " to gateway: " + gateway.toString()));
 		builder.append(cr);
 		return gateway;
 	}
@@ -85,9 +84,8 @@ public class RoutingTable {
 		StringBuilder builder = new StringBuilder();
 		IPv4 ipRoute = new IPv4(route, builder);
 		if (!ipRoute.equals(badIP)) {
-
 			defaultRoute = new IPv4(route, builder);
-			builder.append("new default route is: " + route);
+			builder.append("Successful new default route is: " + route);
 			builder.append(cr);
 		} else {
 			builder.append("Bad IP, default route not set");
@@ -102,7 +100,7 @@ public class RoutingTable {
 		String cr = System.getProperty("os.name").matches("(W|w)indows.*") ? "\r\n" : "\n";
 		StringBuilder builder = new StringBuilder();
 		defaultRoute = new IPv4("0.0.0.0", builder);
-		builder.append(("default route cleared"));
+		builder.append(("Successful default route cleared"));
 		builder.append(cr);
 		return builder.toString();
 	}
@@ -132,7 +130,7 @@ public class RoutingTable {
 
 			// -- Add record to table
 			routeTable.add(ipArr);
-			builder.append("route " + network + " to " + gateway + " added");
+			builder.append("Successful route " + network + " to " + gateway + " added");
 			builder.append(cr);
 		}
 		return builder.toString();
@@ -166,7 +164,7 @@ public class RoutingTable {
 			// Remove record if match found
 			if (rtIndex > -1) {
 				routeTable.remove(rtIndex);
-				builder.append(("route " + network + " to " + gateway + " removed"));
+				builder.append(("Successful route " + network + " to " + gateway + " removed"));
 				builder.append(cr);
 			} else {
 				// No match found
@@ -185,7 +183,7 @@ public class RoutingTable {
 		StringBuilder builder = new StringBuilder();
 		this.defaultRoute = new IPv4("0.0.0.0", builder);
 		routeTable.clear();
-		builder.append("routing table cleared");
+		builder.append("Successful routing table cleared");
 		builder.append(cr);
 		return builder.toString();
 	}

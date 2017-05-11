@@ -16,7 +16,7 @@ public class USendHandler implements CommandHandler {
 		try {
 			builder.append(Router.getPortAdmin().usend(Integer.parseInt(command[1]), command[2].getBytes()));
 		} catch (Exception e) {
-			builder.append(("usage: usend <port> <str>"));
+			builder.append(("usage: usend <port> <data>"));
 			builder.append(cr);
 			// System.out.println(e.toString());
 		}

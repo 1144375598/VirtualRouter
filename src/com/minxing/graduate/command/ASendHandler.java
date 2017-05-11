@@ -16,7 +16,7 @@ public class ASendHandler implements CommandHandler {
 		try {
 			builder.append(Router.getPortAdmin().asend(command[1].getBytes()));
 		} catch (Exception e) {
-			builder.append(("usage: asend <str>"));
+			builder.append(("usage: asend <data>"));
 			builder.append(cr);
 			// System.out.println(e.toString());
 		}

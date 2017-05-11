@@ -45,9 +45,9 @@ public final class MainInterface {
         builder.append(cr);
         builder.append("send <SRC Virtual IP> <DST Virtual IP> <ID> <N bytes>     ");
         builder.append(cr);
-        builder.append("usend <local port> <str>                                  ");
+        builder.append("usend <local port> <data>                                  ");
         builder.append(cr);
-        builder.append("asend <str>                                               ");
+        builder.append("asend <data>                                               ");
         builder.append(cr);
         builder.append("troute <ip>                                               ");
         builder.append(cr);

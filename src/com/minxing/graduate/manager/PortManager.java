@@ -84,7 +84,7 @@ public class PortManager {
 			disconnect(portNo);
 			VRPorts.get(portNo).datagramSocket.close();
 			VRPorts.remove(portNo);
-			builder.append(("port " + portNo + " deleted"));
+			builder.append(("Successful port " + portNo + " deleted"));
 			builder.append(cr);
 			try {
 

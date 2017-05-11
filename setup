@@ -16,8 +16,6 @@ connect add 5002 127.0.0.1:5002
 connect add 5003 127.0.0.1:5003
 connect add 5004 127.100.100.100:5004
 
-// wait a little to fix display
-sleep 100
 
 // add some routes to routing table
 // these are virtual routes, not physical
@@ -28,9 +26,6 @@ route add 192.168.128.0/24 192.168.5.0
 route add 192.168.2.0/24 192.168.1.0
 route add 192.168.1.0/24 192.168.2.0
 route add 192.168.140.0/24 192.168.3.1
-
-// wait a little to fix display
-sleep 100
 
 // show configuration
 config

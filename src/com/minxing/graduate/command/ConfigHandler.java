@@ -9,6 +9,8 @@ public class ConfigHandler implements CommandHandler {
 		String cr = System.getProperty("os.name").matches("(W|w)indows.*") ? "\r\n" : "\n";
 		StringBuilder builder = new StringBuilder();
 		builder.append(cr);
+		builder.append("Successful");
+		builder.append(cr);
 		builder.append("Port info");
 		builder.append(cr);
 		builder.append("-------------------------------------------------------------------------------");
